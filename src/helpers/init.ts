@@ -5,6 +5,8 @@ try{
     fs.ensureDir("src/reporting/screenshots/");
     fs.ensureDir("src/reporting/artifacts/");
     fs.ensureDir("src/reporting/logs/");
+
+    
     fs.emptyDir("src/reporting/");
     fs.emptyDir("src/reporting/screenshots/");
     fs.emptyDir("src/reporting/artifacts/");

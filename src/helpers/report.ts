@@ -1,4 +1,7 @@
+import { currentTimeStamp } from "./util/timeStamp";
+
 const report = require("multiple-cucumber-html-reporter");
+const fss = require("fs-extra")
 
 report.generate({
   jsonDir: "src/reporting/artifacts/",
@@ -22,7 +25,11 @@ report.generate({
     data: [
         { label: "Project", value: "Book Cart Application" },
         { label: "Release", value: "1.2.3" },
-        { label: "Cycle", value: "Smoke-1" }
+        { label: "Cycle", value: "Smoke-1" },
+        { label: "Execution Start Time", value: '' },
+        { label: "Execution End Time", value: '' },
     ],
   },
 });
+
+fss.renameSync("src/reporting/index.html", `src/reporting/BookCartApplication_${currentTimeStamp}.html`);
