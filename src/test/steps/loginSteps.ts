@@ -4,8 +4,6 @@ import { expect } from "@playwright/test";
 
 import { pageFixture } from "../../hooks/pageFixture";
 
-
-
 setDefaultTimeout(60 * 1000 * 2)
 
 Given('User navigates to the {string}', async function (url) {
