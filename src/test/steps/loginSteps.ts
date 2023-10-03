@@ -4,7 +4,7 @@ import { expect } from "@playwright/test";
 
 import { pageFixture } from "../../hooks/pageFixture";
 import { Login } from "../../locators/login";
-import { gettestDataProperty } from "../../helpers/properties/propertyReader";
+import { getLocatorProperty, getTestDataProperty } from "../../helpers/properties/propertyReader";
 
 setDefaultTimeout(60 * 1000 * 2)
 
@@ -19,22 +19,22 @@ Given('User click on the login link', async function () {
     pageFixture.logger.info("Click on "+button)
 });
 
-Given('User enter the username as {string}', async (userName) => {
-    const propertyName = userName;
-    const filePath = "src\\testData\\login.properties";
-  
-    try {
-      const testData = await gettestDataProperty(propertyName, filePath);
-  
-        const textField = await pageFixture.page.waitForSelector(Login.LoginBtn);
-        await textField.fill(testData);
-        await pageFixture.page.waitForTimeout(5000)
-  
-        pageFixture.logger.info('Entered ' + testData + ' on ' + textField);
-    } catch (error) {
-      console.error('An error occurred:', error);
-    }
-  });
+Given('User enter the {string} on field {string} from {string} Page', async (testData, locatorName, screenName) => {  
+  let textField;
+  try {
+    testData = await getTestDataProperty(testData, screenName + '.properties');
+    const locator = await getLocatorProperty(locatorName, screenName + '.properties'); // Use locatorName here
+    console.log(locator)
+
+    textField = await pageFixture.page.locator(locator);
+    await textField.fill(testData);
+    await pageFixture.page.waitForTimeout(5000);
+
+    pageFixture.logger.info('Entered ' + testData + ' on ' + locatorName + ' from ' + screenName + ' Page.');
+  } catch (error) {
+    pageFixture.logger.error('Could not Entered ' + testData + ' on ' + locatorName + ' from ' + screenName + ' Page.');
+  }
+});
   
 
 Given('User enter the password as {string}', async function (password) {
