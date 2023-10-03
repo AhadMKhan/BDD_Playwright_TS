@@ -12,7 +12,7 @@ Feature: User Authentication tests
 
   
   Scenario: Login should not be success
-    Given User enter the username as "Ahad"
+    Given User enter the username as "username"
     Given User enter the password as "Ahad"
     When User click on the login button
     But Login should fail
