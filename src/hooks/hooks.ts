@@ -9,7 +9,7 @@ import { invokeBrowser } from "../helpers/browsers/browserManager";
 let browser: Browser;
 let context: BrowserContext
 
-const screenshotPath = "src/reporting/screenshots/"
+const screenshotPath = "test-results/screenshots/"
 
 BeforeAll(async function () {
     getEnv();

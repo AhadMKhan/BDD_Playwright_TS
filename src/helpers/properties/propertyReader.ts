@@ -13,7 +13,6 @@ async function propertyReader(propertyName: string, filePath: string) {
         const key = trimmedLine.slice(0, separatorIndex).trim();
         if (key === propertyName) {
           const value = trimmedLine.slice(separatorIndex + 1).trim();
-          console.log(`Read property "${propertyName}" from file "${filePath}": ${value}`);
           return value;
         }
       }
@@ -26,8 +25,6 @@ async function propertyReader(propertyName: string, filePath: string) {
     throw error;
   }
 }
-
-
 
 function getPropertyFileName(pageName: string): string {
   const words = pageName.split(' ');
@@ -45,11 +42,11 @@ export async function getTestDataProperty(propertyName: string, filePath: string
       return username;
       
     } else {
-      console.error("Username not found in properties file.");
+      console.error(`Test Data Property not found for ${propertyName} in properties file.`);
       return undefined;
     }
   } catch (error) {
-    console.error('An error occurred:', error);
+    console.error('An error occurred in Test Data Property:', error);
     return undefined;
   }
 }
@@ -62,7 +59,6 @@ async function locatorPropertyReader(propertyName: string, filePath: string) {
 
     if (match && match[1]) {
       const propertyValue = match[1].trim();
-      console.log(`Read property "${propertyName}" from file "${filePath}": ${propertyValue}`);
       return propertyValue;
     } else {
       console.error(`Property "${propertyName}" not found in file "${filePath}"`);
@@ -79,23 +75,16 @@ export async function getLocatorProperty(propertyName: string, filePath: string)
   try {
     const locator = await locatorPropertyReader(propertyName, `src\\locators\\${filePath}`);
     if (locator !== undefined) {
-      console.log(`Locator for ${propertyName}: ${locator}`);
       return locator;
     } else {
       console.error(`Locator not found for ${propertyName} in properties file.`);
       return undefined;
     }
   } catch (error) {
-    console.error('An error occurred:', error);
+    console.error('An error occurred in Locator Property:', error);
     return undefined;
   }
 }
-
-getTestDataProperty("Username.2", "login.properties");
-// getLocatorProperty("Username.xpath", "login.properties")
-// getLocatorProperty("Username.id", "login.properties")
-// getLocatorProperty("Username.css", "login.properties")
-// getLocatorProperty("Username.starik", "login.properties")
 
 
 

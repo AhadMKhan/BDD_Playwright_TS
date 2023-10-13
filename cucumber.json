@@ -16,7 +16,7 @@
         ],
         "format" : [
             "progress-bar",
-            "json:src/reporting/artifacts/cucumber-report.json",
+            "json:test-results/artifacts/cucumber-report.json",
             "rerun:@rerun.txt"
         ],
         "parallel": 2,
@@ -39,7 +39,7 @@
         ],
         "format" : [
             "progress-bar",
-            "json:src/reporting/artifacts/cucumber-report.json",
+            "json:test-results/artifacts/cucumber-report.json",
             "rerun:@rerun.txt"
         ],
         "parallel": 2

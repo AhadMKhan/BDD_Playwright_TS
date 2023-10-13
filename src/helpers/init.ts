@@ -1,17 +1,15 @@
 const fs = require("fs-extra");
 
 try{
-    fs.ensureDir("src/reporting/");
-    fs.ensureDir("src/reporting/screenshots/");
-    fs.ensureDir("src/reporting/artifacts/");
-    fs.ensureDir("src/reporting/logs/");
+    fs.ensureDir("test-results/");
+    fs.ensureDir("test-results/screenshots/");
+    fs.ensureDir("test-results/artifacts/");
+    fs.ensureDir("test-results/logs/");
 
     
-    fs.emptyDir("src/reporting/");
-    fs.emptyDir("src/reporting/screenshots/");
-    fs.emptyDir("src/reporting/artifacts/");
-    // fs.emptyDir("src/reporting/logs/");
-
+    fs.emptyDir("test-results/");
+    fs.emptyDir("test-results/screenshots/");
+    fs.emptyDir("test-results/artifacts/");
 } catch (error) {
     console.log("Folder not created! "+error);
 }

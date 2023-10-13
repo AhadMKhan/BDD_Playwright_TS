@@ -6,8 +6,8 @@ const fss = require("fs-extra")
 export const reportName = `BookCartApplication_${currentTimeStamp}`
 
 report.generate({
-  jsonDir: "src/reporting/artifacts/",
-  reportPath: "src/reporting/report/",
+  jsonDir: "test-results/artifacts/",
+  reportPath: "test-results/report/",
   reportName: "Playwright BDD Report",
   pageTitle: "BookCart App Test",
   displayDuration: false,
@@ -32,4 +32,4 @@ report.generate({
   },
 });
 
-fss.renameSync("src/reporting/report/index.html", `src/reporting/report/${reportName}.html`);
+fss.renameSync("test-results/report/index.html", `test-results/report/${reportName}.html`);
