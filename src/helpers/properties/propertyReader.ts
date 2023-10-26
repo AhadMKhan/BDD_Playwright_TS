@@ -86,6 +86,36 @@ export async function getLocatorProperty(propertyName: string, filePath: string)
   }
 }
 
+export async function readRequestJsonFile(filePath) {
+  filePath = getPropertyFileName(filePath);
+  console.log(filePath)
+
+  try {
+    const jsonData = await fs.readFile(`src\\resources\\apiRequestsBody\\${filePath}.json`, 'utf-8');
+    const parsedData = JSON.parse(jsonData);
+    console.log(parsedData)
+    return parsedData;
+  } catch (error) {
+    console.error(`Error reading or parsing the JSON file at "${filePath}":`, error);
+    throw error;
+  }
+}
+
+export async function readResponseJsonFile(filePath) {
+  filePath = getPropertyFileName(filePath);
+  console.log(filePath)
+
+  try {
+    const jsonData = await fs.readFile(`src\\resources\\apiResponseBody\\${filePath}.json`, 'utf-8');
+    const parsedData = JSON.parse(jsonData);
+    console.log(parsedData)
+    return parsedData;
+  } catch (error) {
+    console.error(`Error reading or parsing the JSON file at "${filePath}":`, error);
+    throw error;
+  }
+}
+
 
 
 

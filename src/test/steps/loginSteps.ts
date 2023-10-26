@@ -4,7 +4,7 @@ import { expect } from "@playwright/test";
 
 import { pageFixture } from "../../hooks/pageFixture";
 import { Login } from "../../locators/login";
-import { getLocatorProperty, getTestDataProperty } from "../../helpers/properties/propertyReader";
+import { getLocatorProperty, getTestDataProperty, readRequestJsonFile, readResponseJsonFile } from "../../helpers/properties/propertyReader";
 
 setDefaultTimeout(60 * 1000 * 2)
 
@@ -35,7 +35,16 @@ Given('User enter the {string} on field {string} from {string} Page', async (tes
     pageFixture.logger.error('Could not Entered ' + testData + ' on ' + locatorName + ' from ' + screenName + ' Page.');
   }
 });
-  
+
+Given('I read Request Json File with {string}', async function (bodyRequest) {
+  const requestBody = readRequestJsonFile(bodyRequest)
+  console.log(requestBody)
+})
+
+Given('I read Response Json File with {string}', async function (bodyRequest) {
+  const requestBody = readResponseJsonFile(bodyRequest)
+  console.log(requestBody)
+})
 
 Given('User enter the password as {string}', async function (password) {
     const textField= await pageFixture.page.waitForSelector(`id=mat-input-1`)
